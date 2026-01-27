@@ -1,13 +1,9 @@
 {
-  description = "Verktyg för studenter på Chalmers Datateknologsektion";
+  description = "NVIM debugging suite for MDx07";
 
-  # I really wish we could modularize the inputs, just as separate files with attrsets,
-  # noting too fancy, but it seems we won't be doing that. Ugh.
   inputs = {
-    #--------- Top level --------#
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    #------ moppen-eda482 -------#
     mdx07-templates = {
       url = "git+https://git.chalmers.se/haelias/mdx07-templates-library.git";
       flake = false;
@@ -23,19 +19,58 @@
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
-    actions-nvim = {
-      url = "github:yaanae/actions.nvim";
-      flake = false;
-    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = {...}@inputs:
-  let
-    system = "x86_64-linux";
-    args = { inherit inputs system; };
-  in
-    {}
-    // (import ./moppen-eda482/outputs.nix args);
-}
+  outputs =
+    { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+      ];
 
+      perSystem =
+        { pkgs, system, ... }:
+        rec {
+          packages = {
+            mdx07-tools = pkgs.callPackage ./mdx07-tools.nix { inherit (inputs) mdx07-binaries; };
+
+            mdx07-init = pkgs.callPackage ./mdx07-init.nix { inherit (packages) mdx07-templates; };
+
+            mdx07-templates = pkgs.callPackage ./mdx07-templates.nix { inherit (inputs) mdx07-templates; };
+
+            mdx07-riscv-gcc = pkgs.callPackage ./mdx07-riscv-gcc.nix { inherit (inputs) riscv-gcc; };
+
+            mdx07-nvim = pkgs.callPackage ./mdx07-nvim.nix {
+              inherit (inputs) nixvim;
+              inherit system;
+            };
+
+            mdx07-docker = pkgs.callPackage ./mdx07-docker.nix {
+              inherit (packages)
+                mdx07-riscv-gcc
+                mdx07-init
+                mdx07-tools
+                mdx07-nvim
+                ;
+            };
+          };
+
+          devShells.default = pkgs.mkShell {
+            packages =
+              (with pkgs; [
+                gnumake
+                gdb
+              ])
+              ++ (with packages; [
+                mdx07-riscv-gcc
+                mdx07-init
+                mdx07-tools
+                mdx07-nvim
+              ]);
+          };
+        };
+    };
+}
