@@ -1,21 +1,29 @@
 {
-  dockerTools,
   busybox,
-  mdx07-riscv-gcc,
+  dockerTools,
+  gdb,
+  gnumake,
+  md307-openocd-cfg,
   mdx07-init,
-  mdx07-tools,
   mdx07-nvim,
+  mdx07-simserver,
+  openocd,
+  riscv32-embedded-gcc,
 }:
 dockerTools.streamLayeredImage {
-  name = "mdx07";
+  name = "md307";
   tag = "latest";
   contents = [
     dockerTools.caCertificates
     busybox
-    mdx07-nvim
+    md307-openocd-cfg
     mdx07-init
-    mdx07-tools
-    mdx07-riscv-gcc
+    mdx07-nvim
+    mdx07-simserver
+    openocd
+    gnumake
+    gdb
+    riscv32-embedded-gcc
   ];
 
   enableFakechroot = true;

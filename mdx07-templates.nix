@@ -1,18 +1,15 @@
 {
   stdenv,
-  mdx07-templates,
+  mdx07-templates-library,
   writeText,
   lib,
 }:
 stdenv.mkDerivation {
   name = "mdx07-templates";
 
-  src = mdx07-templates;
+  src = mdx07-templates-library;
 
-  unpackPhase = ''
-    mkdir -p $out
-    cp -r --no-preserve=all $src/templates/* $out
-
+  patchPhase = ''
     cp ${writeText ".asm-lsp.toml" ''
       [default_config]
       version = "0.10.1"
@@ -20,14 +17,24 @@ stdenv.mkDerivation {
       instruction_set = "riscv"
 
       [opts]
-      compiler = "riscv32-unknown-elf-gcc"
+      compiler = "riscv32-none-elf-gcc"
       diagnostics = true
       default_diagnostics = true
-    ''} "$out/Basic templates/md307-master/.asm-lsp.toml"
+    ''} "templates/Basic templates/md307-master/.asm-lsp.toml"
 
     cp ${writeText "compile-flags.txt" ''
       -g -Wall -Wextra -std=c99 -MMD -march=rv32imf_zicsr -mabi=ilp32f
-    ''} "$out/Basic templates/md307-master/compile_flags.txt"
+    ''} "templates/Basic templates/md307-master/compile_flags.txt"
+
+    find ./ -path "*.vscode*" -delete
+
+    substituteInPlace "templates/Basic templates/md307-master/Makefile" \
+      --replace-fail "riscv32-unknown-elf" "riscv32-none-elf"
+  '';
+
+  installPhase = ''
+    mkdir -p $out
+    cp -r --no-preserve=all templates/* $out
   '';
 
   meta = {

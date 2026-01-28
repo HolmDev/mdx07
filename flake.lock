@@ -34,14 +34,14 @@
         "url": "https://git.chalmers.se/erik.sintorn/mdx07-binaries.git"
       }
     },
-    "mdx07-templates": {
+    "mdx07-templates-library": {
       "flake": false,
       "locked": {
-        "lastModified": 1769505664,
-        "narHash": "sha256-SCqoLudzceEVwLZFSU3AAm4WPqff3Bzpbp3eFlhd+Ys=",
+        "lastModified": 1769595060,
+        "narHash": "sha256-b2awaAzAAqsabNio5hxxPiFovXEHcxUjHueRwkKOxdc=",
         "ref": "refs/heads/main",
-        "rev": "f168a2811881ead4e7e356fb03f75666e50fdd63",
-        "revCount": 72,
+        "rev": "0777aac07f8282ecab2d18b3868d79258a64dd83",
+        "revCount": 75,
         "type": "git",
         "url": "https://git.chalmers.se/haelias/mdx07-templates-library.git"
       },
@@ -105,27 +105,13 @@
         "type": "github"
       }
     },
-    "riscv-gcc": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1765449101,
-        "narHash": "sha256-l+JjwoPA8ZzOPpzfq5MhWFmr+iqdFJz2lUXLxFnFo8I=",
-        "type": "tarball",
-        "url": "https://www.cse.chalmers.se/edu/resources/software/riscv32-gcc/riscv-gcc-ubuntu-22.04-x64.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://www.cse.chalmers.se/edu/resources/software/riscv32-gcc/riscv-gcc-ubuntu-22.04-x64.tar.gz"
-      }
-    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "mdx07-binaries": "mdx07-binaries",
-        "mdx07-templates": "mdx07-templates",
+        "mdx07-templates-library": "mdx07-templates-library",
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim",
-        "riscv-gcc": "riscv-gcc"
+        "nixvim": "nixvim"
       }
     },
     "systems": {

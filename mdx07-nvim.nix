@@ -2,44 +2,39 @@
   nixvim,
   system,
   gdb,
+  mdx07-simserver,
   vimPlugins,
 }:
 nixvim.legacyPackages.${system}.makeNixvimWithModule {
   inherit system;
   module = _: {
-    globals = {
-      mapleader = " ";
-      maplocalleader = " ";
-    };
-
     opts = {
       termguicolors = false;
-      completeopt = "menuone,noselect";
     };
 
     userCommands = {
       "MDx07StartSimserver" = {
         command.__raw = ''
-          	    function()
-          	      vim.system({'simserver'})
-          	    end
-          	  '';
+          function()
+            vim.system({'${mdx07-simserver}/bin/simserver'})
+          end
+        '';
         desc = "Start the MDx07 simserver";
       };
       "MDx07StopSimserver" = {
         command.__raw = ''
-          	    function()
-          	      vim.system({'pkill', 'simserver'})
-          	    end
-          	  '';
+          function()
+            vim.system({'pkill', 'simserver'})
+          end
+        '';
         desc = "Stop the MDx07 simserver";
       };
       "MDx07ToggleUI" = {
         command.__raw = ''
-          	    function()
-          	      require('dapui').toggle()
-          	    end
-          	  '';
+          function()
+            require('dapui').toggle()
+          end
+        '';
         desc = "Toggle the debugging UI";
       };
     };
