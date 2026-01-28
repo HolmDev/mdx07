@@ -34,14 +34,6 @@ nixvim.legacyPackages.${system}.makeNixvimWithModule {
           	  '';
         desc = "Stop the MDx07 simserver";
       };
-      "MDx07Build" = {
-        command.__raw = ''
-          	    function()
-          	      vim.system({'make'})
-          	    end
-          	  '';
-        desc = "Stop the MDx07 simserver";
-      };
       "MDx07ToggleUI" = {
         command.__raw = ''
           	    function()

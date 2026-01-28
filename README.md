@@ -12,7 +12,7 @@ To edit files, use `nvim`, which comes preconfigured for C/Assembly programming,
 
 To start the simserver, simply execute `:MDx07StartSimserver` in Neovim or `simserver` in the shell. You can stop it with `:MDx07StopSimserver`
 
-To build a project, just use `make` or the Neovim alias `:MDx07Build`.
+To build a project, just use `make` or the Neovim alias `:make`.
 
 To get a fancy debugger view, run `:MDx07ToggleUI`. Then use the buttons and the `:Dap*` commands to control the debugger. To interface with the GDB instance running, use the split labeled `dap-repl`. This is neccessary to inspect the memory.
 
