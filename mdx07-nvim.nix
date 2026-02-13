@@ -75,16 +75,23 @@ nixvim.legacyPackages.${system}.makeNixvimWithModule {
             args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
           }
         '';
-        configurations.asm = [
+        configurations =
+          let
+            conf = [
+              {
+                name = "(MDx07) Debug program on simserver:1234";
+                type = "mdx07-gdb";
+                request = "attach";
+                cwd = "\${workspaceFolder}";
+                program = "\${workspaceFolder}/build/\${workspaceFolderBasename}.elf";
+                target = "localhost:1234";
+              }
+            ];
+          in
           {
-            name = "(MDx07) Debug program on simserver:1234";
-            type = "mdx07-gdb";
-            request = "attach";
-            cwd = "\${workspaceFolder}";
-            program = "\${workspaceFolder}/build/\${workspaceFolderBasename}.elf";
-            target = "localhost:1234";
-          }
-        ];
+            asm = conf;
+            c = conf;
+          };
         luaConfig.post = ''
           local dap = require('dap')
           local dapui = require('dapui')
