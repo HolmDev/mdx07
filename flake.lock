@@ -21,11 +21,11 @@
     "mdx07-binaries": {
       "flake": false,
       "locked": {
-        "lastModified": 1769422811,
-        "narHash": "sha256-U3P5YcUZV06xx6xfFCj3C8cSECmLNW+1bUzCP50hy18=",
+        "lastModified": 1770377261,
+        "narHash": "sha256-ns4kToiFFWJyJwQXAC5ELxBp9/2AS5aueKS/9oogh4k=",
         "ref": "refs/heads/main",
-        "rev": "2597eab47fe4a58a1392c682976a1b04a23b7462",
-        "revCount": 14,
+        "rev": "ec933da4562f77bd7d2d5955c27b05986fd7ca7b",
+        "revCount": 16,
         "type": "git",
         "url": "https://git.chalmers.se/erik.sintorn/mdx07-binaries.git"
       },
@@ -37,11 +37,11 @@
     "mdx07-templates-library": {
       "flake": false,
       "locked": {
-        "lastModified": 1769595060,
-        "narHash": "sha256-b2awaAzAAqsabNio5hxxPiFovXEHcxUjHueRwkKOxdc=",
+        "lastModified": 1770904009,
+        "narHash": "sha256-grUzsjtW2yJSC18dyvwYjix+H31bh4Bv4hfmtp18z5Y=",
         "ref": "refs/heads/main",
-        "rev": "0777aac07f8282ecab2d18b3868d79258a64dd83",
-        "revCount": 75,
+        "rev": "1e7e9683718da409a9774617f0e1bf460fe3dfa1",
+        "revCount": 89,
         "type": "git",
         "url": "https://git.chalmers.se/haelias/mdx07-templates-library.git"
       },
@@ -105,13 +105,30 @@
         "type": "github"
       }
     },
+    "openocd-wch": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732695161,
+        "narHash": "sha256-C06PZ/c8XrRc5qxoJRTN4VVcFRV2UJObwQB6l/W3SY8=",
+        "owner": "cjacker",
+        "repo": "wch-openocd",
+        "rev": "2b6802dde74a9560bdfb6eeecb6aff8a13cf8139",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cjacker",
+        "repo": "wch-openocd",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "mdx07-binaries": "mdx07-binaries",
         "mdx07-templates-library": "mdx07-templates-library",
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim"
+        "nixvim": "nixvim",
+        "openocd-wch": "openocd-wch"
       }
     },
     "systems": {
