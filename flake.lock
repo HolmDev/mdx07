@@ -105,30 +105,13 @@
         "type": "github"
       }
     },
-    "openocd-wch": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1732695161,
-        "narHash": "sha256-C06PZ/c8XrRc5qxoJRTN4VVcFRV2UJObwQB6l/W3SY8=",
-        "owner": "cjacker",
-        "repo": "wch-openocd",
-        "rev": "2b6802dde74a9560bdfb6eeecb6aff8a13cf8139",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cjacker",
-        "repo": "wch-openocd",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "mdx07-binaries": "mdx07-binaries",
         "mdx07-templates-library": "mdx07-templates-library",
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim",
-        "openocd-wch": "openocd-wch"
+        "nixvim": "nixvim"
       }
     },
     "systems": {
