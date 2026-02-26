@@ -32,7 +32,9 @@ podman load -i md307.tar
 ```
 
 As we need to forward X11 programs to the host, we need to make sure that X11
-can communicate through the docker. The prerequisites are:
+can communicate through the docker. This depends on the system used.
+
+## X forwarding on Linux
 1. `$DISPLAY` is defined as the active X11 display.
 2. `xhost` returns a line like `SI:localuser:<user>`. If not, add yourself by running `xhost +SI:localuser:$USER`.
 
@@ -40,6 +42,18 @@ To launch an ephemeral container run:
 ```sh
 # Don't forget to include your desired path
 podman run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v "$HOME/.Xauthority:/root/.Xauthority:rw" md307:latest
+```
+
+## X forwarding on MacOS
+Using a XQuartz:
+1. Configure XQuartz to set `Security>Allow connections from network` to true.
+1. Check that XQuartz runs with something like `:0 -listen tcp` using `ps aux | grep Xquartz`.
+1. Allow X11 forwarding using `xhost +localhost`.
+
+To launch an ephemeral container run: 
+```sh
+# Don't forget to include your desired path
+podman run --rm -it -e DISPLAY=docker.for.mac.host.internal:0 md307:latest
 ```
 
 Then simply follow the general instructions, except the `nix develop` command.
