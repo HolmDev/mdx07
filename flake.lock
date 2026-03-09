@@ -21,11 +21,11 @@
     "mdx07-binaries": {
       "flake": false,
       "locked": {
-        "lastModified": 1772023125,
-        "narHash": "sha256-sWLv8HVRaMDispBbY3G5+hPuv42RDs6TxdQeDzjm5ik=",
+        "lastModified": 1772215792,
+        "narHash": "sha256-9xq9mYGUZer4oVSs4MkCXTbbsijql1w5BBiMFXG0Va0=",
         "ref": "refs/heads/main",
-        "rev": "75f2ccc323a3f7e59476e43dbe50d6e5a86b2ebd",
-        "revCount": 19,
+        "rev": "8881bd0e9012917310d912fcc878c533fd16bbba",
+        "revCount": 20,
         "type": "git",
         "url": "https://git.chalmers.se/erik.sintorn/mdx07-binaries.git"
       },
@@ -37,11 +37,11 @@
     "mdx07-templates-library": {
       "flake": false,
       "locked": {
-        "lastModified": 1772108968,
-        "narHash": "sha256-0cO6vKg8e9iGW09rnswIuSRFxQGr1UakqYTJCHns04o=",
+        "lastModified": 1772631515,
+        "narHash": "sha256-TUdDwVl+ND8WwTs/EXkbCGSiGJukzMDFJW2bCV67bTg=",
         "ref": "refs/heads/main",
-        "rev": "2791cd428db11e457b752ab470a3a2bbf55e60d8",
-        "revCount": 103,
+        "rev": "8cba63460839a5c449fc34b65d2bc5f1c08af2ae",
+        "revCount": 107,
         "type": "git",
         "url": "https://git.chalmers.se/haelias/mdx07-templates-library.git"
       },
